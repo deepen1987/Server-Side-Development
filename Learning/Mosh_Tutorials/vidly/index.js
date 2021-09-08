@@ -2,13 +2,14 @@
 // Create a service to manage list of generes http://vidly.com/api/genres
 // Create/ Update/ Read / Delete from the list of genres.
 
-const Joi = require("joi");
-const express = require("express");
+import Joi from "joi";
+import express from "express";
+// const express = require("express");
 const app = express();
-const genres = require("./routes/genres");
+import router from "./routes/genres.mjs";
 
 app.use(express.json());
-app.use("/api/genres", genres)
+app.use("/api/genres", router)
 
 // Setting up environment variable so the program will work on hosting environment.
 const port = process.env.PORT || 3000;
