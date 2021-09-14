@@ -42,4 +42,15 @@ async function getCourse(){
     console.log(course);
 }
 
-getCourse();
+// getCourse();
+
+// Regular expression 
+
+async function getCourseRegx(){
+    const course = await Course
+        .find({ author: /^mo/i})
+        .count();
+    console.log(course);
+}
+
+getCourseRegx();
