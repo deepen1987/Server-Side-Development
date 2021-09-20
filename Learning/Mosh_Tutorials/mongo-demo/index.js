@@ -8,11 +8,23 @@ mongoose.connect("mongodb://localhost/playground")
     .catch( (err) => console.error("Could not connect to MongoDB...", err));
 
 const courseSchema = new mongoose.Schema({
-    name: String,
+    name: { type: String, required: true },
     author: String,
-    tags: [String],
+    tags: {
+        type: Array,
+        validate: {
+            validator: function(v){
+                return v && v.length > 0;
+            },
+            message: "A course should have atleast one tag"
+        }
+    },
     date: { type: Date, default: Date.now },
-    isPublished: Boolean
+    isPublished: Boolean,
+    price: { 
+        type: Number,
+        required: function () { return this.isPublished; }
+    }
 });
 
 // it takes 2 arguments 
@@ -24,14 +36,20 @@ async function createCourse(){
     const course = new Course({
         name: "Angular course",
         author: "Mosh",
-        tags: ["angular", "frontend"],
-        isPublished: true
+        tags: null,
+        isPublished: true,
+        price: 17
     });
-    const result = await course.save();
-    console.log(result);
+    try{
+        // await course.validate() -- This is used to validate the new instance of the course created above.
+        const result = await course.save();
+        console.log(result);
+    }catch(ex){
+        console.log(ex.message)
+    }
 }
 
-// createCourse();
+createCourse();
 
 async function getCourse(){
     const course =  await Course
@@ -53,4 +71,4 @@ async function getCourseRegx(){
     console.log(course);
 }
 
-getCourseRegx();
+// getCourseRegx();

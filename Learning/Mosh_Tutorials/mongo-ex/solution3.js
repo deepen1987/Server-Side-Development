@@ -7,6 +7,7 @@ mongoose.connect("mongodb://localhost/mongo-exercises")
     .catch( (err)=> console.error("Not able to connect MongoDB", err) );
 
 const courseSchema = new mongoose.Schema({
+    "_id": String,
     "tags": [ String ],
     "date": { type: Date, default: Date.now},
     "name": String,
@@ -15,10 +16,10 @@ const courseSchema = new mongoose.Schema({
     "price": Number
 });
 
-const Course = mongoose.model("Course", courseSchema);
+const Courses = mongoose.model("Course", courseSchema);
 
 async function getCourses(){
-    return await Course
+    return await Courses
         .find({ isPublished: true })
         .or([
             { price: { $gte: 15 } },
@@ -33,4 +34,45 @@ async function run(){
     console.log(course);
 }
 
-run();
+// run();
+
+// Updating document with query first approach
+// async function updateCourse(id){
+//     const course = await Courses.findById(id);
+//     if(!course){
+//         console.log(course);
+//          return
+//         };
+
+//     // one way of doing it
+//     course.isPublished = false;
+//     course.author = "Another autohor";
+//     // second way of doing it
+//     course.set({
+//         isPublished: true,
+//         author: "Another author"
+//     });
+//     const result = await course.save();
+//     console.log(result);
+
+// }
+
+
+// async function updateCourse(id){
+//     const result = await Courses.findByIdAndUpdate(id, {
+//         $set:{
+//             author: "Mosh",
+//             isPublished: true
+//         }
+//     });
+//     // const course = await Courses.findById(id);
+//     // console.log(course);
+//     console.log(result);
+// }
+
+async function removeCourse(id){
+    const course = await Courses.findOneAndDelete( { _id: id}, { new: true });
+    console.log(course);
+}
+
+removeCourse("5a68fe2142ae6a6482c4c9cb");

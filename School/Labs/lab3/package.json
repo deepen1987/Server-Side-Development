@@ -1,0 +1,17 @@
+{
+  "name": "route_demo_with_stubs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "easy-guid-generator": "^0.1.4",
+    "express": "^4.17.1"
+  },
+  "keywords": [],
+  "author": "Andrew Sheehan <asheehan@bu.edu>",
+  "license": "ISC",
+  "description": ""
+}
