@@ -1,16 +1,8 @@
-const Joi = require ("joi");
+const { Genre, validateGenre} = require("../models/genre.js")
 const express = require("express");
 const mongoose = require ("mongoose");
 
 const router = express.Router();
-const Genre = mongoose.model("Genre", new mongoose.Schema({
-    name: {
-        type: String,
-        required: true,
-        minlength: 5,
-        maxlength: 50
-    }
-}));
 
 //  ***** Get Request *****
 router.get("/", async (req, res) => {
@@ -57,12 +49,6 @@ router.delete("/:id", async (req, res) => {
     // const result = await Genres.findByIdAndDelete({_id: req.params.id}, {new: true});
     res.send(genre);
 });
-
-// Function to validate genres
-function validateGenre(genre){
-    const schema = Joi.object({ name: Joi.string().min(5).required()});
-    return schema.validate(genre);
-}
 
 // Function to Get genres
 async function getGenres(){
