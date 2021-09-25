@@ -5,6 +5,7 @@
 const express = require("express");
 const genreRoutes = require("./routes/genres.js");
 const customerRoutes = require("./routes/customers.js");
+const movieRoutes = require("./routes/movies.js");
 const mongoose = require("mongoose");
 const app = express();
 
@@ -14,8 +15,9 @@ mongoose.connect("mongodb://localhost/vidly")
     .catch( (err) => console.error("Not able to connect to Genres Database", err));
 
 app.use(express.json());
-app.use("/api/customers", customerRoutes);
 app.use("/api/genres", genreRoutes);
+app.use("/api/customers", customerRoutes);
+app.use("/api/movies", movieRoutes);
 
 // Setting up environment variable so the program will work on hosting environment.
 const port = process.env.PORT || 3000;
