@@ -1,7 +1,8 @@
 // Vidly Application
 // Create a service to manage list of generes http://vidly.com/api/genres
 // Create/ Update/ Read / Delete from the list of genres.
-
+const Joi = require("joi");
+Joi.objectId = require("joi-objectid")(Joi);
 const genreRoutes = require("./routes/genres.js");
 const customerRoutes = require("./routes/customers.js");
 const movieRoutes = require("./routes/movies.js");

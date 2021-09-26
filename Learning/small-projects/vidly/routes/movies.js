@@ -22,8 +22,8 @@ router.post("/", async (req, res) => {
         numberInStock: req.body.numberInStock,
         dailyRentalRate: req.body.dailyRentalRate
     });
-    const result = await movie.save()
-    res.send(result)
+    await movie.save()
+    res.send(movie)
 })
 
 // Get all movies

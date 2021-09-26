@@ -37,7 +37,7 @@ router.post("/", async (req, res) =>{
     });
 
     try{
-        new Fawn.Task()
+        await new Fawn.Task()
             .save("rentals", rental)
             .update('movies', { _id:movie._id }, { 
                 $inc: { numberInStock: -rental.quantity}
