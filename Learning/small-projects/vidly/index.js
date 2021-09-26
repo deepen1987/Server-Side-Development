@@ -7,6 +7,7 @@ const genreRoutes = require("./routes/genres.js");
 const customerRoutes = require("./routes/customers.js");
 const movieRoutes = require("./routes/movies.js");
 const rentalRoutes = require("./routes/rentals.js");
+const userRoutes = require("./routes/users.js");
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
@@ -21,6 +22,7 @@ app.use("/api/genres", genreRoutes);
 app.use("/api/customers", customerRoutes);
 app.use("/api/movies", movieRoutes);
 app.use("/api/rentals", rentalRoutes);
+app.use("/api/users", userRoutes);
 
 // Setting up environment variable so the program will work on hosting environment.
 const port = process.env.PORT || 3000;
