@@ -13,10 +13,10 @@ router.post("/", async (req, res) =>{
     const { error } = validateRental(req.body);
     if(error) return res.status(400).send(error.details[0].message);
 
-    const customer = await Customer.findById(req.body.customerid).catch( (error) =>  null);
+    const customer = await Customer.findById(req.body.customerid);
     if(!customer) return res.status(400).send("Invalid Customer ID");
 
-    const movie = await Movie.findById(req.body.movieid).catch( (error) =>  null);
+    const movie = await Movie.findById(req.body.movieid);
     if(!movie) return res.status(400).send("Invalid Movie ID");
 
     if(movie.numberInStock === 0) return res.status(400).send("Movie not in stock");
@@ -60,7 +60,7 @@ router.get("/", async (req, res) =>{
 
 // get rental by id
 router.get("/:id", async (req, res) =>{
-    const rental = await Rental.findById(req.params.id).catch( (error) =>  null);
+    const rental = await Rental.findById(req.params.id);
     if(!rental) return res.status(400).send("Invalid rental id");
 
     res.send(rental);

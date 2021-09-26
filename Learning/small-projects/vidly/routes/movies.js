@@ -10,7 +10,7 @@ router.post("/", async (req, res) => {
     const { error } = validateMovie(req.body);
     if(error) return res.status(400).send(error.details[0].message);
 
-    const genre = await Genre.findById(req.body.genreid).catch( (error) =>  null);
+    const genre = await Genre.findById(req.body.genreid);
     if(!genre) return res.status(400).send("Invalid Genre");
 
     const movie = new Movie({
@@ -34,7 +34,7 @@ router.get("/", async (req, res) => {
 
 // Get Movies by ID
 router.get("/:id", async (req, res) => {
-    const movie = await Movie.findById(req.params.id).catch( (error) =>  null);
+    const movie = await Movie.findById(req.params.id);
     if(!movie) return res.status(404).send("Movie not found");
     res.send(movie)
 })
@@ -44,7 +44,7 @@ router.put("/:id", async (req, res) =>{
     const { error } = validateMovie(req.body);
     if(error) return res.status(400).send(error.details[0].message);
 
-    const genre = await Genre.findById(req.body.genreid).catch( (error) =>  null);
+    const genre = await Genre.findById(req.body.genreid);
     if(!genre) return res.status(400).send("Invalid Genre");
 
 
@@ -65,7 +65,7 @@ router.put("/:id", async (req, res) =>{
 
 // Delete Movie
 router.delete("/:id", async (req, res) =>{
-    const movie = await Movie.findByIdAndRemove(req.params.id).catch( (error) =>  null);
+    const movie = await Movie.findByIdAndRemove(req.params.id);
     if(!movie) return res.status(400).send("Movie with given ID not found");
 
     res.send(movie);
