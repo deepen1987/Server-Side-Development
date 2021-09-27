@@ -1,5 +1,6 @@
-const jwt = require("jsonwebtoken");
-const config = require("config");
+// With this API we will create a new user, from client this will be called from registration page.
+
+const auth = require("../middleware/auth.js")
 const bcrypt = require("bcrypt");
 const _ = require("lodash"); // by convention this is stored in _
 const { User, validateUser} = require("../models/user.js");
@@ -7,6 +8,12 @@ const express = require("express");
 const mongoose = require("mongoose");
 const { JsonWebTokenError } = require("jsonwebtoken");
 const router = express.Router();
+
+// Getting a user
+router.get("/me", auth, async (req, res) =>{
+    const user = await User.findById(req.user._id).select("-password");
+    res.send(user);
+})
 
 // Registering a User
 router.post("/", async (req, res) =>{

@@ -1,3 +1,6 @@
+// This API will be called when user tries to login from the login page, 
+// once verified we send the response and from their on client side we take user to Home page.
+
 const bcrypt = require("bcrypt");
 const { User } = require("../models/user.js");
 const express = require("express");
