@@ -1,6 +1,6 @@
 const auth = require("../middleware/auth.js");
 const admin = require("../middleware/admin.js");
-const { Genre, validateGenre} = require("../models/genre.js")
+const { Genre, validateGenre} = require("../models/genre.js");
 const express = require("express");
 const mongoose = require ("mongoose");
 
@@ -8,9 +8,10 @@ const router = express.Router();
 
 //  ***** Get Request *****
 router.get("/", async (req, res) => {
+    // throw new Error("Something has failed on system");
     const result = await getGenres();
     res.send(result);
-})
+});
 
 router.get("/:id", async (req, res) => {
     const genre = await Genre
