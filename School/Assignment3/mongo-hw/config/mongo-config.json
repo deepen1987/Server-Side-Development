@@ -1,0 +1,6 @@
+{
+    "host": "localhost",
+    "dbPort": "27017",
+    "db": "delete_me_eventually",
+    "serverPort": "3000"
+}

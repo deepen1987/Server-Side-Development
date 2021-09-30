@@ -1,0 +1,6 @@
+{
+    "host": "localhost",
+    "dbPort": "27017",
+    "db": "recipe",
+    "serverPort": "3000"
+}
