@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Creator</title>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="module" src="./scripts/index.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="top">
+            <h1>Recipe Handler</h1>
+        </div>
+        <div class="body">
+            <div class="part1">
+                <div class="menu">
+                    <label for="menu"> Menu </label>
+                    <select id="menu">
+                        <option value="create-recipe"> Create Recipe </option>
+                        <option value="create-step"> Create Step </option>
+                        <option value="update-step"> Update Step </option>
+                        <option value="get-recipe"> Get Recipe</option>
+                        <option value="get-recipe-step"> Get Recipe Step </option>
+                        <option value="delete-recipe"> Delete Recipe </option>
+                        <option value="delete-recipe-step"> Delete Recipe Step</option>
+                    </select>
+                </div>
+                <div class="sub-menu" id="sub-menu">
+                    <div id="name-div">
+                        <label for="name" class="l-block">Name</label>
+                        <input type="text" id="name" class="menu-item">
+                    </div>
+                    <div id="desc-div">
+                        <label for="description" class="l-block">Description</label>
+                        <textarea id="description" cols="30" rows="4" class="menu-item"></textarea>
+                    </div>
+                    <div id="idR-div">
+                        <label for="recipe-id" class="l-block">Recipe ID</label>
+                        <input type="text" id="recipe-id" class="menu-item">
+                    </div>
+                    <div id="idS-div">
+                        <label for="step-id" class="l-block">Step ID</label>
+                        <input type="text" id="step-id" class="menu-item">
+                    </div>
+                    <div id="step-div">
+                        <label for="step" class="l-block">Step</label>
+                        <textarea id="step" cols="30" rows="3" class="menu-item"></textarea>
+                    </div>
+                    <div>
+                        <input type="button" value="Submit" id="btn">
+                    </div>
+                </div>
+            </div>
+            <div class="part2">
+                <table>
+                    <tbody id="result">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="footer"></div>
+    </div>
+</body>
+
+</html>

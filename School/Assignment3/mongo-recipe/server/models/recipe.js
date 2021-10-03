@@ -27,4 +27,11 @@ export function validateRecipe(recipe){
         steps: Joi.array().items(Joi.string().max(255).required())
     });
     return schema.validate(recipe);
-}
+};
+
+export function validateStep(step){
+    const schema = Joi.object({
+        steps: Joi.string().max(255).required()
+    });
+    return schema.validate(step);
+};

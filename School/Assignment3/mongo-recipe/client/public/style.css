@@ -1,0 +1,55 @@
+body {
+  width: 100vw;
+}
+
+.top {
+  display: flex;
+  justify-content: center;
+}
+
+.menu {
+  margin-bottom: 10px;
+}
+.menu-item {
+  border: 1px solid lightblue;
+  border-radius: 10px;
+  margin-top: 2px;
+  margin-bottom: 7px;
+  padding-left: 7px;
+  padding-right: 7px;
+}
+
+.l-block {
+  display: block;
+}
+
+#name {
+  width: 261px;
+}
+
+.hide {
+  display: none;
+}
+
+.part1,
+.part2 {
+  width: 100%;
+  margin: 0px 10px 10px 5px;
+}
+
+table {
+  border-collapse: collapse;
+}
+tr td {
+  border: 1px solid black;
+}
+
+@media screen and (min-width: 560px) {
+  .body {
+    display: flex;
+  }
+  .part1,
+  .part2 {
+    width: 50%;
+  }
+}

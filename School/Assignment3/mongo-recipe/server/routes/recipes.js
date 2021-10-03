@@ -1,22 +1,30 @@
-import express from "express";
-import { Recipe, validateRecipe } from "../models/recipe.js";
+import express, { json } from "express";
+import { Recipe, validateRecipe, validateStep } from "../models/recipe.js";
 
 export const router = express.Router();
 
-// Get all recipes
-router.get("/", async (req, res) =>{
-    const recipes = await Recipe.find().sort("name");
-    res.send(recipes);
+// Get recipes
+router.get("/:id", async (req, res) =>{
+
+    const recipe = await Recipe.findById(req.params.id);
+    if(!recipe) return res.status(400).send("Recipe not found.");
+    
+    res.send(recipe);
 });
 
 // Get one indicated step of your recipe by ID 
 router.get("/:idR/step/:idS", async (req, res)=> {
     const recipe = await Recipe.findById(req.params.idR)
-    const step = Number(req.params.idS) - 1
-    res.send(recipe.steps[step])
+    if(!recipe) return res.status(400).send("Recipe not found.");
+
+    const step = Number(req.params.idS)
+    if((step - 1) < 0 || step > recipe.steps.length) return res.status(400).send("Invalid Step parameter.");
+
+    const result = { step: recipe.steps[step - 1]}
+    res.status(200).send(result)
 });
 
-// Post a Full recipe
+// Post Create a recipe
 router.post("/", async (req, res) =>{
     const { error } = validateRecipe(req.body)
     if(error) return res.status(400).send(error.details[0].message)
@@ -31,4 +39,56 @@ router.post("/", async (req, res) =>{
     res.send(result)
 });
 
-// Post a step in recipe
+// Post Create a new step in recipe
+router.post("/:id/step", async (req, res) =>{
+    const { error } = validateStep(req.body);
+    if(error) return res.status(400).send(error.details[0].message);
+
+    let recipe = await Recipe.findById(req.params.id);
+    if(!recipe) return res.status(400).send("Recipe not found.");
+
+    recipe.steps.push(req.body.steps);
+    recipe = await recipe.save();
+
+    res.send(recipe); 
+});
+
+// Put Update a step of the recipe
+router.put("/:idR/step/:idS", async (req, res) =>{
+    const { error } = validateStep(req.body);
+    if(error) return res.status(400).send(error.details[0].message);
+
+    let recipe = await Recipe.findById(req.params.idR)
+    if(!recipe) return res.status(400).send("Recipe not found.");
+
+    const step = Number(req.params.idS)
+    if((step - 1) < 0 || step > recipe.steps.length) return res.status(400).send("Invalid Step parameter.");
+
+    recipe.steps[step - 1] = req.body.steps
+    recipe = await recipe.save();
+
+    res.send(recipe); 
+});
+
+// Delete a Step in Recipe
+router.delete("/:idR/step/:idS", async (req, res) =>{
+    let recipe = await Recipe.findById(req.params.idR);
+    if(!recipe) return res.status(400).send("Recipe not found.");
+
+    const step = Number(req.params.idS)
+    if((step - 1) < 0 || step > recipe.steps.length) return res.status(400).send("Invalid Step parameter.");
+
+    recipe.steps.splice(step - 1, 1)
+    recipe = await recipe.save()
+
+    res.send(recipe);
+});
+
+
+// Delete a Recipe
+router.delete("/:id", async (req, res) =>{
+    const recipe = await Recipe.findByIdAndRemove(req.params.id);
+    if(!recipe) return res.status(400).send("Recipe not found.");
+
+    res.send(recipe);
+})
