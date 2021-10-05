@@ -89,31 +89,38 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("btn").addEventListener("click", () => {
         switch (menu.value) {
             case "create-recipe":
-                create.createRecipe()
+                create.createRecipe();
+                resetInput();
                 break;
 
             case "create-step":
-                create.createStep()
+                create.createStep();
+                resetInput();
                 break;
 
             case "update-step":
-                update.updateStep()
+                update.updateStep();
+                resetInput();
                 break;
 
             case "get-recipe":
-                get.getRecipe()
+                get.getRecipe();
+                resetInput();
                 break;
 
             case "get-recipe-step":
-                get.getRecipeStep()
+                get.getRecipeStep();
+                resetInput();
                 break;
 
             case "delete-recipe":
-                del.deleteRecipe()
+                del.deleteRecipe();
+                resetInput();
                 break;
 
             case "delete-recipe-step":
-                del.deleteStep()
+                del.deleteStep();
+                resetInput();
                 break;
 
             default:

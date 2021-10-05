@@ -1,10 +1,12 @@
-import express, { json } from "express";
-import { Recipe, validateRecipe, validateStep } from "../models/recipe.js";
+import express from "express";
+import { Recipe, validateRecipe, validateStep, validateObjectID } from "../models/recipe.js";
 
 export const router = express.Router();
 
 // Get recipes
 router.get("/:id", async (req, res) =>{
+    const objID = validateObjectID(req.params.id);
+    if(!objID) return res.status(400).send("Invalid ID");
 
     const recipe = await Recipe.findById(req.params.id);
     if(!recipe) return res.status(400).send("Recipe not found.");
@@ -14,6 +16,9 @@ router.get("/:id", async (req, res) =>{
 
 // Get one indicated step of your recipe by ID 
 router.get("/:idR/step/:idS", async (req, res)=> {
+    const objID = validateObjectID(req.params.idR);
+    if(!objID) return res.status(400).send("Invalid ID");
+
     const recipe = await Recipe.findById(req.params.idR)
     if(!recipe) return res.status(400).send("Recipe not found.");
 
@@ -41,6 +46,9 @@ router.post("/", async (req, res) =>{
 
 // Post Create a new step in recipe
 router.post("/:id/step", async (req, res) =>{
+    const objID = validateObjectID(req.params.id);
+    if(!objID) return res.status(400).send("Invalid ID");
+
     const { error } = validateStep(req.body);
     if(error) return res.status(400).send(error.details[0].message);
 
@@ -55,6 +63,9 @@ router.post("/:id/step", async (req, res) =>{
 
 // Put Update a step of the recipe
 router.put("/:idR/step/:idS", async (req, res) =>{
+    const objID = validateObjectID(req.params.idR);
+    if(!objID) return res.status(400).send("Invalid ID");
+
     const { error } = validateStep(req.body);
     if(error) return res.status(400).send(error.details[0].message);
 
@@ -72,6 +83,9 @@ router.put("/:idR/step/:idS", async (req, res) =>{
 
 // Delete a Step in Recipe
 router.delete("/:idR/step/:idS", async (req, res) =>{
+    const objID = validateObjectID(req.params.idR);
+    if(!objID) return res.status(400).send("Invalid ID");
+
     let recipe = await Recipe.findById(req.params.idR);
     if(!recipe) return res.status(400).send("Recipe not found.");
 
@@ -87,6 +101,9 @@ router.delete("/:idR/step/:idS", async (req, res) =>{
 
 // Delete a Recipe
 router.delete("/:id", async (req, res) =>{
+    const objID = validateObjectID(req.params.id);
+    if(!objID) return res.status(400).send("Invalid ID");
+
     const recipe = await Recipe.findByIdAndRemove(req.params.id);
     if(!recipe) return res.status(400).send("Recipe not found.");
 

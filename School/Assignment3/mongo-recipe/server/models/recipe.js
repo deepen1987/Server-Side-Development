@@ -35,3 +35,7 @@ export function validateStep(step){
     });
     return schema.validate(step);
 };
+
+export function validateObjectID(objID){
+    return mongoose.isValidObjectId(objID);
+}

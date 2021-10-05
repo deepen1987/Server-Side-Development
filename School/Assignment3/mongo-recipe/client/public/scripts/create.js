@@ -26,9 +26,12 @@ export async function createRecipe() {
 };
 
 export async function createStep() {
-    const idR = document.getElementById("recipe-id").value
+    const idR = document.getElementById("recipe-id").value;
     const step = document.getElementById("step").value;
-
+    if (idR === ""){ 
+        document.getElementById("result").innerHTML = "Invalid Recipe ID";
+        return;
+    };
 
     const url = `http://localhost:3000/recipes/${idR}/step`;
     const postData = {

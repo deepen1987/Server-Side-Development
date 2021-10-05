@@ -1,7 +1,12 @@
 import { output } from "./output.js";
 
 export async function getRecipe() {
-    const idR = document.getElementById("recipe-id").value
+    const idR = document.getElementById("recipe-id").value;
+
+    if (idR === ""){ 
+        document.getElementById("result").innerHTML = "Invalid Recipe ID";
+        return;
+    }; 
 
     const url = `http://localhost:3000/recipes/${idR}`;
 
@@ -14,10 +19,19 @@ export async function getRecipe() {
 }
 
 export async function getRecipeStep() {
-    const idR = document.getElementById("recipe-id").value
-    const ids = document.getElementById("step-id").value
+    const idR = document.getElementById("recipe-id").value;
+    const idS = document.getElementById("step-id").value;
 
-    const url = `http://localhost:3000/recipes/${idR}/step/${ids}`;
+    if (idR === ""){ 
+        document.getElementById("result").innerHTML = "Invalid Recipe ID";
+        return;
+    };
+    if (isNaN(idS) || idS.trim() === "" || idS < 0){ 
+        document.getElementById("result").innerHTML = "Invalid Step ID";
+        return;
+    };
+
+    const url = `http://localhost:3000/recipes/${idR}/step/${idS}`;
 
     await fetch(url, {
         method: "get"
