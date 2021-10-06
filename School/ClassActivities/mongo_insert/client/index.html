@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Mongo: First Insert</title>
+    <link rel="icon" type="image/png" href="favicon-16x16.png">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" 
+          rel="stylesheet" 
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    
+    <style>
+        section {
+            padding: 10px;
+            width: 82vw;
+            min-width: 50vw;
+        }
+        section > section {
+            padding: 0;
+            width: 44vw;
+            min-width: 30vwj;
+        }
+    </style>
+  </head>
+  <body>
+    <h1>Create a new book record in our database</h1>
+    <div id="response"></div>
+    <section>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Course</span>
+            <input type="text" class="form-control" id="course_name" placeholder="Course Name">
+        </div>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text">Section Code</span>
+            <input type="text" class="form-control" id="section_code" placeholder="Course Section Code (A1,B1...)">
+        </div>
+ 
+        <div class="input-group mb-3">
+            <span class="input-group-text">Professor</span>
+            <input type="text" class="form-control" id="professor" placeholder="Course Instructor">
+        </div> 
+        
+        <div class="input-group mb-3">
+            <span class="input-group-text">Building Code</span>
+            <input type="text" class="form-control" placeholder="Building Code" id="building">
+        </div>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text">Room</span>
+            <input type="text" class="form-control" placeholder="Room" id="room">
+        </div>
+
+        <section>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Start Time</span>
+                <input type="time" class="form-control" id="start_time">
+            </div>
+    
+            <div class="input-group mb-3">
+                <span class="input-group-text">End Time</span>
+                <input type="time" class="form-control" id="end_time">
+            </div>
+        </section>
+    </section>
+
+    <button id="saveBtn" type="button">Save</button>
+      
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" 
+            integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" 
+            crossorigin="anonymous"></script> 
+    <script type="module" src="./modules/client.js"></script>
+  </body>
+</html>

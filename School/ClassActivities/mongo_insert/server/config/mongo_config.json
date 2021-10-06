@@ -1,0 +1,5 @@
+{ 
+    "host": "localhost",
+    "port": 27017,
+    "db": "first_connection_delete_me_later"
+}

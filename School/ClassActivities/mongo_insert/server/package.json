@@ -1,0 +1,20 @@
+{
+  "name": "first_insert",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Showing how todo an insertion to a collection",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: There are no tests.  You should create some...\" && exit 1"
+  },
+  "dependencies": {
+    "cors": "2.8.5",
+    "express": "4.17.1",
+    "mongoose": "6.0.7"
+  },
+  "keywords": [
+    "mongo, node, express"
+  ],
+  "author": "Andrew Sheehan <asheehan@bu.edu>",
+  "license": "MIT"
+}
