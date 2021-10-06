@@ -1,7 +1,7 @@
 const { Customer } = require("../models/customer.js");
 const { Movie } = require("../models/movie.js");
 const { Rental, validateRental } = require("../models/rental.js");
-const Fawn = require("fawn");
+// const Fawn = require("fawn");
 const express = require("express");
 const mongoose = require("mongoose");
 const router = express.Router();
@@ -16,7 +16,7 @@ router.post("/", async (req, res) =>{
     const customer = await Customer.findById(req.body.customerid);
     if(!customer) return res.status(400).send("Invalid Customer ID");
 
-    const movie = await Movie.findById(req.body.movieid);
+    let movie = await Movie.findById(req.body.movieid);
     if(!movie) return res.status(400).send("Invalid Movie ID");
 
     if(movie.numberInStock === 0) return res.status(400).send("Movie not in stock");
@@ -36,18 +36,23 @@ router.post("/", async (req, res) =>{
         quantity: req.body.quantity
     });
 
-    try{
-        await new Fawn.Task()
-            .save("rentals", rental)
-            .update('movies', { _id:movie._id }, { 
-                $inc: { numberInStock: -rental.quantity}
-            })
-            .run();
+    rental = await rental.save();
+    movie.numberInStock = movie.numberInStock - rental.quantity;
+    movie = await movie.save();
+    res.send(rental)
 
-        res.send(rental)
-    }catch(ex) {
-        res.status(500).send("Internal server error")
-    }
+    // try{
+    //     await new Fawn.Task()
+    //         .save("rentals", rental)
+    //         .update('movies', { _id:movie._id }, { 
+    //             $inc: { numberInStock: -rental.quantity}
+    //         })
+    //         .run();
+
+    //     res.send(rental)
+    // }catch(ex) {
+    //     res.status(500).send("Internal server error")
+    // }
 
         
 });
