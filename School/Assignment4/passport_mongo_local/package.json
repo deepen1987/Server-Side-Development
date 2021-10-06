@@ -1,0 +1,29 @@
+{
+  "name": "local_mongo_strategy",
+  "version": "1.0.0",
+  "description": "Example using Passport.JS with Mongo and Express.JS",
+  "main": "index.js",
+  "type": "module",
+  "dependencies": {
+    "express":"4.17.1",
+    "mongoose":"6.0.9",
+    "jsonwebtoken":"8.5.1",
+    "bcrypt":"5.0.1",
+    "validator":"13.6.0",
+    "passport":"0.5.0",
+    "passport-jwt":"4.0.0",
+    "passport-local":"1.0.0",
+    "dotenv":"10.0.0",
+    "cookie-parser":"1.4.5",
+    "morgan":"1.10.0"
+  },
+  "devDependencies": {
+    "cross-env":"7.0.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: You need to create tests!!\" && exit 1"
+  },
+  "keywords": ["passportjs", "node", "express", "Mongo"],
+  "author": "Adopted from (taken from...) Sijuade Ajagunna <https://ng.linkedin.com/in/sijuade-ajagunna-064458184>",
+  "license": "MIT"
+}
