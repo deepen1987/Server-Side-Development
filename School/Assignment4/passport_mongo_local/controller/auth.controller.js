@@ -38,6 +38,36 @@ export default {
     )(req, res, next);
   },
 
+  deleteAccount: async (req, res, next) => {
+    passport.authenticate(
+      'deleteAccount', { session: false }, async (err, user, info) => {
+        if (err || !user) {
+          let message = err;
+          if (info) {
+            message = info.message;
+          }
+          return res.status(401).json({status: "error", error: {message}});
+        }
+        // generate a signed json web token with the contents of user object and return it in the response
+        createCookieFromToken(user, 200, req, res);
+      })(req, res, next);
+  },
+
+  resetPassword: async (req, res, next) => {
+    passport.authenticate(
+      'resetPassword', { session: false }, async (err, user, info) => {
+        if (err || !user) {
+          let message = err;
+          if (info) {
+            message = info.message;
+          }
+          return res.status(401).json({status: "error", error: {message}});
+        }
+        // generate a signed json web token with the contents of user object and return it in the response
+        createCookieFromToken(user, 200, req, res);
+      })(req, res, next);
+  },
+
   login: (req, res, next) => {
     passport.authenticate("login", {session: false}, (err, user, info) => {
       if (err || !user) {
@@ -47,7 +77,7 @@ export default {
         }
         return res.status(401).json({status: "error", error: {message}});
       }
-      // generate a signed son web token with the contents of user object and return it in the response
+      // generate a signed json web token with the contents of user object and return it in the response
       createCookieFromToken(user, 200, req, res);
     })(req, res, next);
   },
@@ -55,4 +85,5 @@ export default {
   protectedRoute: async (req, res) => {
     res.status(200).json({status: "success", data: {message: "Congratualations"}});
   }
+
 };

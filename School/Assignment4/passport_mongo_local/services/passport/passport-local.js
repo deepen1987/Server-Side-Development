@@ -66,4 +66,61 @@ passport.use(
     }),
   );
 
+  passport.use(
+    'deleteAccount',
+    new Strategy(authFields, async (req, email, password, cb) => {
+      try {
+          const user = await User.findOne({$or: [{email}, {userName: email}]});
+  
+          if (!user || !user.password) {
+              return cb(null, false, { message: 'Incorrect email or password.'});
+          }
+  
+          const checkPassword = await user.comparePassword(password);
+  
+          if (!checkPassword) {
+              return cb(null, false, {message: 'Incorrect email or password.'});
+          }
+  
+          const deletedUser = await User.findByIdAndDelete(user._id)
+          return cb(null, deletedUser, {message: 'Account deleted Successfully'});
+  
+      } catch (err) {
+          console.log(err);
+          return cb(null, false, {statusCode: 400, message: err.message});
+      }
+    }),
+  );
+
+  passport.use(
+    'resetPassword',
+    new Strategy(authFields, async (req, email, password, cb) => {
+      try {
+          const user = await User.findOne({$or: [{email}, {userName: email}]});
+  
+          if (!user || !user.password) {
+              return cb(null, false, { message: 'Incorrect email or password.'});
+          }
+  
+          const checkPassword = await user.comparePassword(password);
+  
+          if (!checkPassword) {
+              return cb(null, false, {message: 'Incorrect email or password.'});
+          }
+          
+          if (!req.body.newPassword){
+            return cb(null, false, {message: 'New Password is required.'});
+          }
+
+          user.password = req.body.newPassword;
+          await user.save();
+          return cb(null, user);
+  
+      } catch (err) {
+          console.log(err);
+          return cb(null, false, {statusCode: 400, message: err.message});
+      }
+    }),
+  );
+
   export default passport;
