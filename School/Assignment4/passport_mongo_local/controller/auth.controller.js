@@ -48,8 +48,7 @@ export default {
           }
           return res.status(401).json({status: "error", error: {message}});
         }
-        // generate a signed json web token with the contents of user object and return it in the response
-        createCookieFromToken(user, 200, req, res);
+        res.status(200).json({status: "success", data: {message: "Account Deleted Successfully."}});
       })(req, res, next);
   },
 
@@ -83,7 +82,7 @@ export default {
   },
 
   protectedRoute: async (req, res) => {
-    res.status(200).json({status: "success", data: {message: "Congratualations"}});
+    res.status(200).json({status: "success", data: {message: "Congratulations"}});
   }
 
 };

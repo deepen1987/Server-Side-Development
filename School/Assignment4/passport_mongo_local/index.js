@@ -6,8 +6,8 @@ import app from "./app.js";
 
 config();
 
-const PORT = process.env.PORT || 5000;
-const server = http.createServer(app);
+const PORT = process.env.PORT || 4000;
+export const server = http.createServer(app);
 
 process.on("uncaughtException", (error) => {
     console.log(`uncaught exception: ${error.message}`);
@@ -22,5 +22,5 @@ process.on("unhandledRejection", err => {
 });
 
 server.listen(PORT, () => {
-    console.info(`server running on http://localhost:${PORT} in ${process.env.NODE_ENV} mode`);
+    console.info(`server running on http://localhost:${PORT} in ${process.env.NODE_ENV} modes`);
 });

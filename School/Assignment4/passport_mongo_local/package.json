@@ -15,6 +15,7 @@
     "passport": "0.5.0",
     "passport-jwt": "4.0.0",
     "passport-local": "1.0.0",
+    "supertest": "^6.1.6",
     "validator": "13.6.0"
   },
   "devDependencies": {
@@ -22,7 +23,7 @@
     "jest": "^27.2.4"
   },
   "scripts": {
-    "test": "echo \"Error: You need to create tests!!\" && exit 1"
+    "test": "jest --watchAll --detectOpenHandles"
   },
   "keywords": [
     "passportjs",
