@@ -4,8 +4,13 @@ import * as i from '../index'
 config()
 
 describe('/auth', () => {
-    beforeEach(() => { i.server });
-    afterEach(() => { i.server.close() });
+    beforeEach(() => { i.server }); 
+    afterEach(() => { i.server.close() }); 
+    // We are opening the node server here before each describe below is executed
+    //And we are closing it because the server is open before and if we do 
+    // not close once the 2nd test case is executed the before will try to
+    //  start the server on the same port which will cause a error and 
+    // crash the testing.
 
     describe('POST /', () => {
         it('It should Create a User.', async () => {
@@ -92,6 +97,6 @@ describe('/auth', () => {
                 .accept('Content-Type', 'application/x-www-form-urlencoded');
 
             expect(res.body.data.message).toBe('Account Deleted Successfully.');
-        })
-    })
+        });
+    });
 });
