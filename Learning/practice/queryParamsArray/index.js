@@ -16,5 +16,5 @@ mongoose.connect(url)
     .then( ()=> console.log(`Connected to ${url}`));
 
     app.listen(port, ()=>{
-    console.log(`Connected on port${port}`);
+    console.log(`Connected on port ${port}`);
 });
