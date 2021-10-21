@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css"
+        integrity="sha384-Uu6IeWbM+gzNVXJcM9XV3SohHtmWE+3VGi496jvgX1jyvDTXfdK+rfZc8C1Aehk5" crossorigin="anonymous">
+    <style>
+        body {
+            margin-left: 10%;
+        }
+    </style>
+    <script type="module" src="./index.js"></script>
+</head>
+
+<body>
+    <form class="pure-form pure-form-aligned">
+        <fieldset class="pure-group">
+            <input type="text" name="number" id="number" placeholder="Insert the Temperature">
+            <input list="data" id="datalist" placeholder="Select Converter">
+            <datalist id="data">
+                <option value="Fahrenheit to Celsius"></option>
+                <option value="Celsius to Kelvin"></option>
+                <option value="Celsius to Fahrenheit"></option>
+                <option value="Fahrenheit to Kelvin"></option>
+            </datalist>
+        </fieldset>
+        <fieldset class="pure-group">
+            <span>Result:</span>
+            <span id="result"></span>
+        </fieldset>
+        <input class="pure-button pure-button-active" type="button" value="Convert" id="btn">
+    </form>
+</body>
+
+</html>
