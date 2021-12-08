@@ -1,0 +1,5 @@
+Hi My Name is Deependrasingh Shekhawat. 
+Select * from users;
+Delete 
+Insert
+Update
