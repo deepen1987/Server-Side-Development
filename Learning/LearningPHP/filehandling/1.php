@@ -4,8 +4,8 @@ $replace = ["Insert", "Update", "Delete", "Select"];
 $myfile = fopen("hello.txt", "r") or die("Unable to open file");
 $output =  fread($myfile,filesize("hello.txt"));
 $replacedoutput = str_replace($replace,"",$output);
-
-
+$myfile = fopen("hello.txt", "w") or die("Unable to open file");
+fwrite($myfile, $replacedoutput);
 fclose("hello.txt");
 
 ?>
