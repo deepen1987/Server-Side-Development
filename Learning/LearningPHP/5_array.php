@@ -9,7 +9,10 @@
 </head>
 
 <body>
-    <?php $reportCard=array( 
+    <?php 
+        // Associative Array
+
+        $reportCard=array( 
         "sheehan"=> array( "601" => 98 ),
         "smitty"=> array( "601" => 95 )
         ); ?>

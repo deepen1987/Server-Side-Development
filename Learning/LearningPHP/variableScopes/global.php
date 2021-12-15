@@ -31,7 +31,7 @@
         echo "<p> If GLOBALS Name4:". $GLOBALS["globalName"]. "</p>";
     }
     globalVar();
-
+    
     ?>    
 
 
